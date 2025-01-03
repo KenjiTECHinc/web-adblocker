@@ -23,6 +23,6 @@
         "https://www.linkedin.com/"
     ],
     "background": {
-        "service_worker": "extension.js"
+        "service_worker": "background.js"
     }
 }

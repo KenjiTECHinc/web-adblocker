@@ -36,3 +36,11 @@ chrome.webNavigation.onComitted.addListener(function (tab) {
         });
     }
 });
+
+function runLinkedInScript() {
+    // Inject script
+    chrome.tabs.executeScript({
+        file: 'linkedin.js'
+    });
+    return;
+}
