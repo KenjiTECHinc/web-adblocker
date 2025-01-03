@@ -1,0 +1,28 @@
+{
+    "manifest_version": 3,
+    "name": "My Web AdBlocker",
+    "version": "0.0.1",
+    "description": "A basic example extension for blocking ads.",
+    "author": "Anonymous Author",
+    "icons": {
+        "16": "images/icon.jpg",
+        "48": "images/icon.jpg",
+        "128": "images/icon.jpg"
+    },
+    "action": {
+        "default_icon": {
+            "16": "images/icon.jpg",
+            "48": "images/icon.jpg",
+            "128": "images/icon.jpg"
+        },
+        "default_title": "Web Adblocker"
+    },
+    "permissions": [
+        "tabs",
+        "webNavigation",
+        "https://www.linkedin.com/"
+    ],
+    "background": {
+        "service_worker": "extension.js"
+    }
+}
