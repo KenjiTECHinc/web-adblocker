@@ -22,21 +22,33 @@ cd your-repository
 
 Here is a step-by-step instructions on how to deploy our adblocker extension.
 
-#### a. Configure your Chrome Extension settings
+#### 2a. Configure your Chrome Extension settings
 
 First, open the settings of your Chrome browser and locate 'Extensions'. A new tab will be opened showing your extensions, toggle the `Developer mode` switch at the top right corner of the tab.
 
-#### b. Adding the AdBlocker extension
+![image](https://github.com/user-attachments/assets/ea1f6dae-9726-4ce0-854f-a32ba727109f)
+
+
+#### 2b. Adding the AdBlocker extension
 
 Once the developer mode has been turned on, you can then click on the 'Load unpacked' button. You should then locate the folder in which the repository's files are located. Select that folder and wait for a few seconds for the new extension to unpack.
 
-#### c. Using the Extension
+![image](https://github.com/user-attachments/assets/2ac051c9-4654-43d4-9682-9cacabf869a5)
+
+#### 2c. Using the Extension
 
 Once the extension is loaded, and no error message is shown, the set up is complete. Voila! You may now open a [LinkedIn](https://www.linkedin.com/) tab to test the "adblocker" extension, it should be noticeable that the "Promoted" posts are now gone.
+
+![image](https://github.com/user-attachments/assets/6f7174cc-1b36-4834-98bd-82f0ae7bd86f)
+
+Promoted post gone!
 
 ## Contributing to the Project
 
 Feel free to contribute to this repository, simply fork and submit a pull request when you're ready.
 
-This Chrome Extension project is partly inspired from [yakkomajuri](https://github.com/yakkomajuri/linkedin-adblocker).
-However, the said repository is quite outdated and needed some refactoring/necessary updates that were implemented in this project instead.
+<br>
+<br>
+
+> This Chrome Extension project is partly inspired from [yakkomajuri](https://github.com/yakkomajuri/linkedin-adblocker).
+However, the said inspiration is quite outdated (Extension version 2) and needed some refactoring/necessary updates (Extension version 3) that were implemented in this project instead.
