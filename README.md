@@ -51,4 +51,4 @@ Feel free to contribute to this repository, simply fork and submit a pull reques
 <br>
 
 > This Chrome Extension project is partly inspired from [yakkomajuri](https://github.com/yakkomajuri/linkedin-adblocker).
-However, the said inspiration is quite outdated (Extension version 2) and needed some refactoring/necessary updates (Extension version 3) that were implemented in this project instead.
+However, the said inspiration is quite outdated (Extension version 2) and needed some refactoring/necessary updates to a newer Extension version that were implemented in this project instead.
