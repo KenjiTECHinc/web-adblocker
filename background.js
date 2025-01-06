@@ -1,46 +1,37 @@
-chrome.webNavigation.onComitted.addListener(function (tab) {
-    /*
+chrome.webNavigation.onCommitted.addListener(function (details) {
+    /**
      * Listener for page navigation event in the browser
      * Prevent script from running when other frames load
      * Triggered as soon as browser commited to loading a page, allow the script to run earlier opposed to onCompleted.
      */
-    if (tab.frameId == 0) {
-        chrome.tabs.query({ active: true, lastfocusedWindow: true }, tabs => {
-
-            let url = tabs[0].url;
-
-            // parser to strip the protocol from the URL, this will handle both http and https protocols
-            // (^\w+:) matches the start of the string followed by one or more characters with ':'
-            // (^) matches the start of the string
-            // (www\.) matches the string 'www.' in the URL (optional ['?'])
-            let parseURL = new url.replace(/(^\w+:|^)\/\/(www\.)?/, '');
-
-            // parser to strip queries from the URL
-            // obtain only domain
-            let domain = parseURL.slice(0, parseURL.indexOf('/') == -1 ? parseURL.length : parseURL.indexOf('/').slice(0, parseURL.indexOf('?') == -1 ? parseURL.length : parseURL.indexOf('?')));
-
-            try {
-                if (domain.length < 1 || domain === null || domain === undefined) {
-                    // log error
-                    throw new Error('Domain not found');
-                }
-                else if (domain === "linkedin.com") {
-                    // Send the domain to the content script
-                    runLinkedInScript();
-                    return;
-                }
+    if (details.frameId == 0) {
+        chrome.tabs.get(details.tabId, (tab) => {
+            if (chrome.runtime.lastError || !tab.url) {
+                console.error('Error retrieving tab details:', chrome.runtime.lastError);
+                return;
             }
-            catch (err) {
-                console.error(err);
+
+            let url = new URL(tab.url);
+            let domain = url.hostname.replace("www.", ""); // Extract domain
+
+            if (domain === "linkedin.com") {
+                runLinkedInScript(details.tabId);
             }
         });
     }
 });
 
-function runLinkedInScript() {
+function runLinkedInScript(my_tabid) {
     // Inject script
-    chrome.tabs.executeScript({
+    console.log('Injecting script');
+    chrome.scripting.executeScript({
+        target: { tabId: my_tabid },
         file: 'linkedin.js'
+    }, () => {
+        if (chrome.runtime.lastError) {
+            console.error(chrome.runtime.lastError.message);
+            return;
+        }
     });
-    return;
+    return true;
 }
