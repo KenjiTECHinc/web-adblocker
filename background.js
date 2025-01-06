@@ -5,6 +5,7 @@ chrome.webNavigation.onCommitted.addListener(function (details) {
      * Triggered as soon as browser commited to loading a page, allow the script to run earlier opposed to onCompleted.
      */
     if (details.frameId == 0) {
+        console.log('Tab ID:', details.tabId);
         chrome.tabs.get(details.tabId, (tab) => {
             if (chrome.runtime.lastError || !tab.url) {
                 console.error('Error retrieving tab details:', chrome.runtime.lastError);
@@ -15,23 +16,20 @@ chrome.webNavigation.onCommitted.addListener(function (details) {
             let domain = url.hostname.replace("www.", ""); // Extract domain
 
             if (domain === "linkedin.com") {
-                runLinkedInScript(details.tabId);
+                RunLinkedInScript(details.tabId);
             }
         });
     }
 });
 
-function runLinkedInScript(my_tabid) {
-    // Inject script
-    console.log('Injecting script');
+function RunLinkedInScript(tabId) {
+    /**
+     * Inject the script into the tab
+     * tabId: int
+     */
     chrome.scripting.executeScript({
-        target: { tabId: my_tabid },
-        file: 'linkedin.js'
-    }, () => {
-        if (chrome.runtime.lastError) {
-            console.error(chrome.runtime.lastError.message);
-            return;
-        }
+        target: { tabId: tabId },
+        files: ['linkedin.js']
     });
-    return true;
+    return;
 }

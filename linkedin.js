@@ -8,7 +8,8 @@ function removePromotedPosts() {
     let spans = document.getElementsByTagName('span');
 
     for (let i = 0; i < spans.length; i++) {
-        if (spans[i].innerHTML == "Promoted" || spans[i].innerHTML === "\n                <span aria-hidden=\"true\"><!---->Promoted<!----></span><span class=\"visually-hidden\"><!---->Promoted<!----></span>\n              ") {
+        if (spans[i].innerHTML == "Promoted"
+            || spans[i].innerHTML === "\n                <span aria-hidden=\"true\"><!---->Promoted<!----></span><span class=\"visually-hidden\"><!---->Promoted<!----></span>\n              ") {
             // get the div card that contains the entire post
             let card = spans[i].closest('.feed-shared-update-v2');
 
